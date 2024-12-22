@@ -1,0 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer components{
+    .outerDiv{
+        @apply w-full h-full p-2 px-6
+    }
+    .heading{
+        @apply font-bold tracking-wider
+    }
+    .darkCard{
+        @apply bg-darkColor-light text-darkColor-text shadow-darkColor-input
+    }
+}
