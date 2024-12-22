@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../hooks/useFetch'
+import { axiosInstance } from '../config/axiosInstance'
+import toast from 'react-hot-toast'
+import { useConfirm } from 'material-ui-confirm'
 
 const JobDetailsPage = () => {
+    const confirm = useConfirm()
+    const [refresh,setRefresh] = useState(false)
     const params = useParams()
     const jobId = params.jobId
     console.log(jobId)
-    const [job,error,loading] = useFetch(`/admin/jobPost/${jobId}`)
+    const [job,error,loading] = useFetch(`/admin/jobPost/${jobId}`,[refresh])
     console.log(job)
 
    function calculateDate(createdDate){
@@ -17,6 +22,68 @@ const JobDetailsPage = () => {
 
     return `${date}-${month}-${year}`
    }
+
+   function handleApproval(jobId,jobTitle,employer){
+
+    async function approveJob(){
+      try {
+        const response = await axiosInstance({
+          method:"PUT",
+          url:`/admin/jobPost/${jobId}`
+        })
+        if(response.status === 200){
+          toast.success("Job approved")
+          setRefresh(!refresh)
+        }
+      } catch (err) {
+        console.log(err)
+        toast.error("Job approval failed")
+      }
+    }
+
+    confirm({ title:"Confirm job approval",
+      description:`Approving ${jobTitle} by ${employer}, this can't be undone`,
+      confirmationText:"Confirm"
+   })
+  .then(() => {
+    approveJob()
+  })
+  .catch(() => {
+ console.log("approval cancel");
+ 
+  });
+    
+  }
+
+  function handleDelete(jobId,jobTitle,employer){
+    async function deleteJob(){
+      try {
+        const response = await axiosInstance({
+          method:"DELETE",
+          url:`/admin/jobPost/${jobId}`
+        })
+        if(response.status === 200){
+          toast.success("Job deleted")
+          setRefresh(!refresh)
+        }
+      } catch (err) {
+        console.log(err)
+        toast.error("Job deletion failed")
+      }
+    }
+
+    confirm({ title:"Confirm job deletion",
+      description:`Deleting ${jobTitle} by ${employer}, this can't be undone`,
+      confirmationText:"Confirm"
+   })
+  .then(() => {
+    deleteJob()
+  })
+  .catch(() => {
+ console.log("deletion cancel");
+ 
+  });
+  }
 
   return (
     <div className='outerDiv'>
@@ -70,8 +137,8 @@ const JobDetailsPage = () => {
     </div>
     <div className='flex mt-6 gap-4 '>
         
-        {job.verified===true?"":<button className='btn btn-xs md:btn-sm border-none bg-green-400 text-white hover:bg-green-500'>Approve</button>}
-        <button className='btn btn-xs md:btn-sm  border-none bg-red-500 hover:bg-red-600 text-white'>Delete</button>
+        {job.verified===true?"":<button onClick={()=>handleApproval(job._id,job.title,job.employer.name)} className='btn btn-xs md:btn-sm border-none bg-green-400 text-white hover:bg-green-500'>Approve</button>}
+        <button onClick={()=>handleDelete(job._id,job.title,job.employer.name)} className='btn btn-xs md:btn-sm  border-none bg-red-500 hover:bg-red-600 text-white'>Delete</button>
     </div>
    </div>}
     </div>
