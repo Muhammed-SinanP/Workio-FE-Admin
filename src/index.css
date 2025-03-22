@@ -1,15 +1,20 @@
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@700&family=Noto+Sans&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+html,
+body {
+  scrollbar-width:thin;
+  color: #202124;
+}
 @layer components{
-    .outerDiv{
-        @apply w-full h-full p-2 px-6
+    .main-div{
+        @apply p-4 pr-2 sm:p-5
     }
     .heading{
-        @apply font-bold tracking-wider
+        @apply font-medium capitalize tracking-wider  bg-brand-dark text-brand-extralight text-lg shadow-sm shadow-brand-dark sticky p-2 w-full text-center top-0
     }
     .darkCard{
-        @apply bg-darkColor-light text-darkColor-text shadow-darkColor-input
+        @apply bg-dark-light text-dark-text shadow-dark-input
     }
 }

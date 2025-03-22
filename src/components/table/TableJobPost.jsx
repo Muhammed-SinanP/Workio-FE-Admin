@@ -16,7 +16,10 @@ const TableJobPost = ({data,refresh,setRefresh,headColor,condition}) => {
         try {
           const response = await axiosInstance({
             method:"PUT",
-            url:`/admin/jobPost/${jobId}`
+            url:`/admin/jobPost/${jobId}`,
+            params: {
+              userRole: "admin"
+            }
           })
           if(response.status === 200){
             toast.success("Job approved")
@@ -47,7 +50,10 @@ const TableJobPost = ({data,refresh,setRefresh,headColor,condition}) => {
         try {
           const response = await axiosInstance({
             method:"DELETE",
-            url:`/admin/jobPost/${jobId}`
+            url:`/admin/jobPost/${jobId}`,
+            params:{
+              userRole:"admin"
+            }
           })
           if(response.status === 200){
             toast.success("Job deleted")

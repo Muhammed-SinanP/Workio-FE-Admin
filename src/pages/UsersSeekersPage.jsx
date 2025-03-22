@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import useFetch from "../hooks/useFetch";
 import TableUser from "../components/table/TableUser";
+import UsersTable from "../components/table/UsersTable";
 
 const UsersSeekersPage = () => {
   const [refresh, setRefresh] = useState(false);
@@ -9,10 +10,11 @@ const UsersSeekersPage = () => {
   ]);
 
   return (
-    <div className="outerDiv">
+    <div className="">
       <div className="heading">All Job Seekers</div>
-      <div className="my-8">
-        <TableUser data={allJobSeekers} refresh={refresh} setRefresh={setRefresh} headColor={"bg-violet-500"} userRole={"job_seeker"}/>
+      <div className="main-div">
+        <UsersTable users={allJobSeekers} userRole={"job_seeker"}/>
+        {/* <TableUser data={allJobSeekers} refresh={refresh} setRefresh={setRefresh} headColor={"bg-violet-500"} userRole={"job_seeker"}/> */}
       </div>
     </div>
   );

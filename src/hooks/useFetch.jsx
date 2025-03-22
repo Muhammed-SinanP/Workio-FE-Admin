@@ -20,6 +20,9 @@ const useFetch = (url,dependency=[]) => {
         const response = await axiosInstance({
           method: "GET",
           url: url,
+          params:{
+            userRole:"admin"
+          }
         });
         if (isMounted) {
           setData(response?.data?.data); 

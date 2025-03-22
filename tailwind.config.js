@@ -1,40 +1,44 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
-        brandColor: {
-          DEFAULT: "#00A264",
-          dark: "#004D2F",
-          light: "#76e3b9",
-          lighter: "#7efcce",
+        brand: {
+          DEFAULT: "#870aff",
+          dark: "#360269",
+          light: "#b872fc",
+          extralight: "#faf5ff",
+          text: "#202124",
         },
-        darkColor:{
-          DEFAULT:"#1D232A",
-          light:"#39424d",
-          text:"#A6ADBB",
-          input:"#121212"
-        }
+        dark: {
+          DEFAULT: "#1D232A",
+          light: "#39424d",
+          text: "#A6ADBB",
+          input: "#121212",
+        },
       },
       fontFamily: {
-        brandFont: ["Lora", "sans-serif"],
+        "brand-font": ["Lora", "sans-serif"],
+        "para-font": ["Noto Sans", "sans-serif"],
+      },
+      fontSize: {
+        xxs: "0.7rem",
       },
       borderWidth: {
         0.5: "0.5px",
+        3: "3px",
       },
     },
   },
   plugins: [
-    require('daisyui'),
-    require('tailwind-scrollbar-hide')
+    require("daisyui"),
+    require("tailwind-scrollbar-hide"),
+    require("tailwind-scrollbar")({ nocompatible: true }),
   ],
   daisyui: {
     themes: ["light", "dark"],
   },
-  darkMode: ['selector', '[data-theme="dark"]'],
-}
+  darkMode: ["selector", '[data-theme="dark"]'],
+};
 

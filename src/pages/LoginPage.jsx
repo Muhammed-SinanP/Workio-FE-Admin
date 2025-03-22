@@ -39,6 +39,8 @@ const LoginPage = () => {
         dispatch(saveUserData());
         toast.success("Login success");
         navigate("/");
+      }else{
+        console.log("response")
       }
     } catch (err) {
       dispatch(clearUserData());
@@ -54,7 +56,9 @@ const LoginPage = () => {
   }
 
   function googleSignIn() {
+    console.log("google start")
     try {
+      
       window.location.href = `${
         import.meta.env.VITE_BACKEND_URL
       }/api/auth/googleSign/admin`;
@@ -72,16 +76,17 @@ const LoginPage = () => {
     try {
       const response = await axiosInstance({
         method: "GET",
-        url: "/user/checkUser/admin",
+        url: "/auth/checkUser",
       });
       if (response.status === 200) {
         dispatch(saveUserData());
         navigate("/");
       } else {
         dispatch(clearUserData());
+        navigate("/login")
       }
     } catch (err) {
-      console.log(err || "user not authorized");
+      console.log(err?.response?.data?.message || "user not authorized");
 
       dispatch(clearUserData());
     }

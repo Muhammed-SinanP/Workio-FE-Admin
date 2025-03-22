@@ -13,6 +13,7 @@ import JobPostsVerifiedPage from "../pages/JobPostsVerifiedPage"
 import JobPostsPendingPage from "../pages/JobPostsPendingPage"
 import AllJobPostsPage from "../pages/AllJobPostsPage"
 import JobDetailsPage from "../pages/JobDetailsPage"
+import ProfilePage from "../pages/ProfilePage"
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
             {
                 path:"jobPost/:jobId",
                 element:<JobDetailsPage/>
+            },
+            {
+                path: "adminProfile",
+                element: <ProfilePage />
             }
             
 

@@ -6,41 +6,47 @@ import ContactPageIcon from '@mui/icons-material/ContactPage';
 export const SidebarData = [
 
     {
-        icon:<DashboardIcon fontSize="small" className='p-1'/>,
+        icon:<DashboardIcon/>,
         title:"Dashboard",
         path:"/"
     },
     {
-        icon:<GroupIcon fontSize="small" className='p-1'/>,
+        icon:<GroupIcon/>,
         title:"Users",
         children:[
-            {
+            {   
+                parent:"Users",
                 title:"All users",
                 path:"/allUsers"
             },
             {
+                parent: "Users",
                 title:"Job seekers",
                 path:"/allJobSeekers"
             },
             {
+                parent: "Users",
                 title:"Employers",
                 path:"/allEmployers"
             },
         ]
     },
     {
-        icon:<NewspaperIcon fontSize="small" className='p-1'/>,
+        icon:<NewspaperIcon/>,
         title:"Job posts",
         children:[
             {
+                parent: "Job posts",
                 title:"All job posts",
                 path:"/allJobPosts"
             },
             {
+                parent: "Job posts",
                 title:"Verified posts",
                 path:"/jobPosts/verified"
             },
             {
+                parent: "Job posts",
                 title:"Pending posts",
                 path:"/jobPosts/pending"
             },
