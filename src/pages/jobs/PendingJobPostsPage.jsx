@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react'
 import useFetch from '../../hooks/useFetch'
-
 import JobPostsTable from '../../components/tables/JobPostsTable'
-
 import PaginationBtn from '../../components/buttons/PaginationBtn'
 import SortDiv from '../../components/SortDiv'
 import { useForm } from 'react-hook-form'
 import ErrorDiv from '../../components/ErrorDiv'
 import LoadingBars from '../../components/loading/LoadingBars'
+import { useOutletContext } from 'react-router-dom'
 
 const PendingJobPostsPage = () => {
+  const { scrollToTop } = useOutletContext()
   const [refresh,setRefresh] = useState(false)
   const [pageNo, setPageNo] = useState(0)
     const [jobsPerPage, setJobsPerPage] = useState(10)
@@ -39,10 +39,7 @@ const PendingJobPostsPage = () => {
 
   function handlePageClick(e) {
     setPageNo(e.selected);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop()
   }
 
   useEffect(()=>{

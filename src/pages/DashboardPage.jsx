@@ -10,7 +10,6 @@ import WorkHistoryIcon from '@mui/icons-material/WorkHistory';
 import ContactPageIcon from '@mui/icons-material/ContactPage';
 
 const DashboardPage = () => {
-
   const [allUsers, allUsersError, allUsersLoading] = useFetch("/admin/users/all");
   const [jobSeekers, jobSeekersError, jobSeekersLoading] = useFetch("/admin/users/job_seeker");
   const [employers, employersError, employersLoading] = useFetch("/admin/users/employer");
@@ -20,8 +19,6 @@ const DashboardPage = () => {
   const [pendingJobPosts, pendingJobPostsError, pendingJobPostsLoading] = useFetch("/admin/jobPosts/pending")
 
   const [allApplications, allApplicationsError, allApplicationsLoading] = useFetch("/admin/allApplications")
-
-
 
   return (
     <div className="">
@@ -38,7 +35,7 @@ const DashboardPage = () => {
           <CountCard icon={<WorkHistoryIcon />} title="Pending Job Posts" count={!pendingJobPostsError ? pendingJobPostsLoading ? null : pendingJobPosts.jobPostsCount : "N.D"} bgColor="bg-yellow-500 " path={"/jobPosts/pending"} />
         </div>
         <div className="count-row">
-          <CountCard icon={<ContactPageIcon />} title="Total Job Applications" count={!allApplicationsError?allApplicationsLoading?null:allApplications.length:"N.D"} bgColor="bg-blue-500" path={undefined} />
+          <CountCard icon={<ContactPageIcon />} title="Total Job Applications" count={!allApplicationsError ? allApplicationsLoading ? null : allApplications.length : "N.D"} bgColor="bg-blue-500" path={undefined} />
         </div>
       </div>
     </div>

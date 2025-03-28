@@ -6,14 +6,16 @@ import SortDiv from '../../components/SortDiv'
 import { useForm } from "react-hook-form"
 import ErrorDiv from '../../components/ErrorDiv'
 import LoadingBars from '../../components/loading/LoadingBars'
+import { useOutletContext } from 'react-router-dom'
 
 const AllJobPostsPage = () => {
+  const { scrollToTop } = useOutletContext()
   const [refresh, setRefresh] = useState(false)
   const [pageNo, setPageNo] = useState(0)
   const [jobsPerPage, setJobsPerPage] = useState(10)
   const [pageCount, setPageCount] = useState(1)
   const [allJobPosts, setAllJobPosts] = useState(null)
-  const [skipSNo,setSkipSNo] = useState(0)
+  const [skipSNo, setSkipSNo] = useState(0)
   const { register, watch } = useForm({
     defaultValues: {
       sortCriteria: "date",
@@ -22,13 +24,13 @@ const AllJobPostsPage = () => {
   })
   const sortCriteria = watch("sortCriteria")
   const sortOrder = watch("sortOrder")
-  const [jobPostsData, allJobPostsError, allJobPostsLoading] = useFetch(`/admin/jobPosts/all?sortCriteria=${sortCriteria}&sortOrder=${sortOrder}&pageNo=${pageNo+1}&jobsPerPage=${jobsPerPage}`, [refresh])
+  const [jobPostsData, allJobPostsError, allJobPostsLoading] = useFetch(`/admin/jobPosts/all?sortCriteria=${sortCriteria}&sortOrder=${sortOrder}&pageNo=${pageNo + 1}&jobsPerPage=${jobsPerPage}`, [refresh])
 
   useEffect(() => {
     if (jobPostsData) {
       setAllJobPosts(jobPostsData.jobPosts)
       setPageCount(jobPostsData.totalPages)
-      setSkipSNo(pageNo*jobsPerPage)
+      setSkipSNo(pageNo * jobsPerPage)
     }
   }, [jobPostsData])
 
@@ -37,15 +39,12 @@ const AllJobPostsPage = () => {
   }
   function handlePageClick(e) {
     setPageNo(e.selected);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop()
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     setPageNo(0)
-  },[sortCriteria,sortOrder])
+  }, [sortCriteria, sortOrder])
 
   return (
     <div className=''>
@@ -55,9 +54,9 @@ const AllJobPostsPage = () => {
           <ErrorDiv info={"Error fetching job posts."} />
           :
           !allJobPosts ?
-           <div className='loading-page'><LoadingBars/></div>  :
+            <div className='loading-page'><LoadingBars /></div> :
             <div className='flex flex-col gap-4'>  <SortDiv register={register} sortCriteria={sortCriteria} />
-              <JobPostsTable posts={allJobPosts} condition={"none"} refreshPage={refreshPage} isLoading={allJobPostsLoading} skipSNo={skipSNo}/>
+              <JobPostsTable posts={allJobPosts} condition={"none"} refreshPage={refreshPage} isLoading={allJobPostsLoading} skipSNo={skipSNo} />
             </div>
         }
         {allJobPosts && allJobPosts.length > 0 && <div><PaginationBtn handlePageClick={handlePageClick} pageNo={pageNo} pageCount={pageCount} /></div>}

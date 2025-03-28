@@ -43,10 +43,14 @@ const MainLayout = () => {
 
   const mainRef = useRef(null);
 
-  useEffect(() => {
+  function scrollToTop(){
     if (mainRef.current) {
-      mainRef.current.scrollTo(0, 0);
+      mainRef.current.scrollTo({ top: 0, behavior: "smooth" });
     }
+  };
+
+  useEffect(() => {
+   scrollToTop()
   }, [location.pathname]);
 
   return (
@@ -58,7 +62,7 @@ const MainLayout = () => {
 
         <div ref={mainRef} className='flex-1 overflow-auto scrollbar-thin scrollbar-thumb-brand-dark scrollbar-track-brand-extralight'>
           <div className='min-h-screen '>
-            <Outlet />
+            <Outlet context={{ scrollToTop }} />
           </div>
           <Footer />
         </div>

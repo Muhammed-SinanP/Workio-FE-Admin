@@ -22,7 +22,6 @@ const ProfilePage = () => {
     setRefreshProfile(!refreshProfile)
   }
 
-
   function handleLogout() {
     async function userLogout() {
       try {

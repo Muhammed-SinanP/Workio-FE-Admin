@@ -14,7 +14,7 @@ const CountCard = ({icon,title,count,bgColor,path}) => {
       <div className="flex-1">
         <div className="sm:pl-2 sm:text-sm text-xs">{title}</div>
        
-          <div className="text-end text-lg sm:text-2xl font-medium">{count?.toString() ? count:<span className="loading loading-spinner"></span>}</div>
+          <div className="text-end text-lg sm:text-2xl font-medium">{count?.toString() ? count:<span className="loading loading-spinner loading-sm sm:loading-md"></span>}</div>
         
       </div>
     </div>

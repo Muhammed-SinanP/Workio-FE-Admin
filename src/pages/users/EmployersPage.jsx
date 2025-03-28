@@ -6,8 +6,10 @@ import SortDiv from "../../components/SortDiv";
 import { useForm } from "react-hook-form";
 import ErrorDiv from "../../components/ErrorDiv";
 import LoadingBars from "../../components/loading/LoadingBars";
+import { useOutletContext } from "react-router-dom";
 
 const EmployersPage = () => {
+  const { scrollToTop } = useOutletContext()
   const [refresh, setRefresh] = useState(false);
   const [pageNo, setPageNo] = useState(0)
   const [usersPerPage, setUsersPerPage] = useState(10)
@@ -38,10 +40,7 @@ const EmployersPage = () => {
 
   function handlePageClick(e) {
     setPageNo(e.selected);
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    scrollToTop()
   }
 
   useEffect(() => {
