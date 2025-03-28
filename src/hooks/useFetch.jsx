@@ -7,8 +7,8 @@ const useFetch = (url,dependency=[]) => {
   const [data, setData] = useState(null);
 
   useEffect(() => {
+    setIsLoading(true)
     if (!url) {
-       
         setError("URL not provided");
         setIsLoading(false);
         return;

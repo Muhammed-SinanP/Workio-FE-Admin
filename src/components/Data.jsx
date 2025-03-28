@@ -1,7 +1,7 @@
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import GroupIcon from '@mui/icons-material/Group';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import ContactPageIcon from '@mui/icons-material/ContactPage';
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 export const SidebarData = [
 
@@ -17,17 +17,17 @@ export const SidebarData = [
             {   
                 parent:"Users",
                 title:"All users",
-                path:"/allUsers"
+                path:"/users"
             },
             {
                 parent: "Users",
                 title:"Job seekers",
-                path:"/allJobSeekers"
+                path:"/users/jobSeekers"
             },
             {
                 parent: "Users",
                 title:"Employers",
-                path:"/allEmployers"
+                path:"/users/employers"
             },
         ]
     },
@@ -38,7 +38,7 @@ export const SidebarData = [
             {
                 parent: "Job posts",
                 title:"All job posts",
-                path:"/allJobPosts"
+                path:"/jobPosts"
             },
             {
                 parent: "Job posts",
@@ -52,5 +52,10 @@ export const SidebarData = [
             },
         ]
     },
+    {
+        icon:<AdminPanelSettingsIcon/>,
+        title:"Admin profile",
+        path:"/adminProfile"
+    }
    
 ]

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { toggleTheme } from "../redux/features/themeSlice";
+import { toggleTheme } from "../../redux/features/themeSlice";
 
 const DarkModeBtn = ({ expandSidebar }) => {
   const theme = useSelector((state) => state.theme.theme);

@@ -17,6 +17,9 @@ export default {
           text: "#A6ADBB",
           input: "#121212",
         },
+        "custom-border-color": {
+          DEFAULT: "#9CA3AF",
+        },
       },
       fontFamily: {
         "brand-font": ["Lora", "sans-serif"],

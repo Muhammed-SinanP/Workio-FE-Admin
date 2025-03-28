@@ -1,19 +1,24 @@
 import {createBrowserRouter} from "react-router-dom"
 import MainLayout from "../layouts/MainLayout"
-import ErrorPage from "../pages/ErrorPage"
-import LoginPage from "../pages/LoginPage"
-import DashboardPage from "../pages/DashboardPage"
-import AllUsersPage from "../pages/AllUsersPage"
-import UsersSeekersPage from "../pages/UsersSeekersPage"
-import UsersEmployersPage from "../pages/UsersEmployersPage"
 
-import ForgotPasswordPage from "../pages/ForgotPasswordPage"
-import ResetPasswordPage from "../pages/ResetPasswordPage"
-import JobPostsVerifiedPage from "../pages/JobPostsVerifiedPage"
-import JobPostsPendingPage from "../pages/JobPostsPendingPage"
-import AllJobPostsPage from "../pages/AllJobPostsPage"
-import JobDetailsPage from "../pages/JobDetailsPage"
+import ErrorPage from "../pages/ErrorPage"
 import ProfilePage from "../pages/ProfilePage"
+import ChangePasswordPage from "../pages/ChangePasswordPage"
+import DashboardPage from "../pages/DashboardPage"
+
+import LoginPage from "../pages/auth/LoginPage"
+import ForgotPasswordPage from "../pages/auth/ForgotPasswordPage"
+import ResetPasswordPage from "../pages/auth/ResetPasswordPage"
+
+import VerifiedJobPostsPage from "../pages/jobs/VerifiedJobPostsPage"
+import PendingJobPostsPage from "../pages/jobs/PendingJobPostsPage"
+import AllJobPostsPage from "../pages/jobs/AllJobPostsPage"
+import JobDetailsPage from "../pages/jobs/JobDetailsPage"
+
+import AllUsersPage from "../pages/users/AllUsersPage"
+import JobSeekersPage from "../pages/users/JobSeekersPage"
+import EmployersPage from "../pages/users/EmployersPage"
+import AuthLayout from "../layouts/AuthLayout"
 
 export const router = createBrowserRouter([
     {
@@ -26,28 +31,28 @@ export const router = createBrowserRouter([
                 element:<DashboardPage/>
             },
             {
-                path:"allUsers",
+                path:"users",
                 element:<AllUsersPage/>
             },
             {
-                path:"allJobSeekers",
-                element:<UsersSeekersPage/>
+                path:"users/jobSeekers",
+                element:<JobSeekersPage/>
             },
             {
-                path:"allEmployers",
-                element:<UsersEmployersPage/>
+                path:"users/Employers",
+                element:<EmployersPage/>
             },
             {
-                path:"allJobPosts",
+                path:"jobPosts",
                 element:<AllJobPostsPage/>
             },
             {
                 path:"jobPosts/verified",
-                element:<JobPostsVerifiedPage/>
+                element:<VerifiedJobPostsPage/>
             },
             {
                 path:"jobPosts/pending",
-                element:<JobPostsPendingPage/>
+                element:<PendingJobPostsPage/>
             },
             {
                 path:"jobPost/:jobId",
@@ -56,22 +61,34 @@ export const router = createBrowserRouter([
             {
                 path: "adminProfile",
                 element: <ProfilePage />
+            },
+            {
+                path:"changeMyPassword",
+                element:<ChangePasswordPage/>
             }
             
 
         ]
     },
     {
-        path:"/login",
-        element:<LoginPage/>
+        path:"/auth",
+        element:<AuthLayout/>,
+        
+        children:[
+            {
+                path: "login",
+                element: <LoginPage />
+            },
+            {
+                path: "forgotPassword",
+                element: <ForgotPasswordPage />
+            },
+            {
+                path: "resetPassword/:resetToken",
+                element: <ResetPasswordPage />
+            }
+        ]
     },
-    {
-        path:"/forgotPassword",
-        element:<ForgotPasswordPage/>
-    },
-    {
-        path:"/resetPassword/:resetToken",
-        element:<ResetPasswordPage/>
-    }
+    
 
 ])

@@ -9,12 +9,39 @@ body {
 }
 @layer components{
     .main-div{
-        @apply p-4 pr-2 sm:p-5
+        @apply p-4 sm:p-5 pb-10 sm:pb-20
     }
     .heading{
-        @apply font-medium capitalize tracking-wider  bg-brand-dark text-brand-extralight text-lg shadow-sm shadow-brand-dark sticky p-2 w-full text-center top-0
+        @apply font-medium z-10 capitalize tracking-wider  bg-brand-dark dark:bg-dark text-brand-extralight text-lg shadow-sm shadow-brand-dark dark:shadow-dark-input sticky p-2 w-full text-center top-0
     }
     .darkCard{
         @apply bg-dark-light text-dark-text shadow-dark-input
     }
+    .input-style {
+    @apply w-full cursor-text rounded-md border border-custom-border-color bg-white p-1.5 outline-none dark:bg-dark-input;
+  }
+  .pagination-btn {
+    @apply flex h-7 w-7 text-xs items-center justify-center rounded-md border-0.5 border-custom-border-color bg-white shadow-sm dark:bg-gray-300;
+  }
+  .jobDetails-heading{
+    @apply font-medium capitalize
+  }
+  .jobDetails-content{
+    @apply ml-4 capitalize
+  }
+  .forgot-password{
+    @apply cursor-pointer text-sm font-medium text-blue-500 hover:text-blue-600 sm:text-xs
+  }
+  .err-msg{
+    @apply text-xs text-red-500
+  }
+  .count-container{
+    @apply grid grid-cols-12 gap-2 sm:gap-4 
+  }
+  .count-row{
+    @apply col-span-12 grid gap-2 sm:gap-4 grid-cols-12
+  }
+  .loading-page{
+    @apply min-h-screen flex justify-center items-center
+  }
 }
