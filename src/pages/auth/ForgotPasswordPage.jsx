@@ -2,7 +2,6 @@ import React from "react";
 import { useState } from "react";
 import { axiosInstance } from "../../config/axiosInstance";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,6 +13,7 @@ const ForgotPasswordPage = () => {
   const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(forgotPasswordSchema) })
 
   async function handlePasswordReset(data) {
+    setDisableBtn(true)
     toast.dismiss()
     const loading = toast.loading("Sending email")
     try {
@@ -28,19 +28,21 @@ const ForgotPasswordPage = () => {
         navigate("/");
       }
     } catch (err) {
-        toast.dismiss(loading)
-        toast.error("Failed to sent email")
+      toast.dismiss(loading)
+      if (err.status == 404) {
+        toast.error("User does not exist");
+      }else{
+         toast.error("Failed to sent email")
+      }
+  
     }finally{
       toast.dismiss(loading)
+      setDisableBtn(false)
     }
   }
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-
+  
   return (
-    <div className="main-div min-h-screen flex flex-col items-center  gap-6">
+    <div className="main-div min-h-screen flex flex-col items-center gap-6">
       <div className="text-center font-medium">
         A password reset link will be send to your registered email once you
         click 'Send Reset URL'. Click on that link to create a new password.
@@ -63,7 +65,8 @@ const ForgotPasswordPage = () => {
         <div className="mt-2 text-center">
           <button
             type="submit"
-            className="btn border-none bg-brand text-white hover:bg-brand-dark "
+            className="btn border-none bg-brand text-white hover:bg-brand-dark"
+            disabled={disableBtn}
           >Send Reset URL</button>
         </div>
       </form>

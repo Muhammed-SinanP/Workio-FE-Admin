@@ -28,7 +28,7 @@ const LoginForm = () => {
             if (response.status === 200) {
                 dispatch(saveUserData());
                 toast.success("Logged in successfully");
-                navigate("/");
+                navigate(-1);
             } else {
                 dispatch(clearUserData());
             }

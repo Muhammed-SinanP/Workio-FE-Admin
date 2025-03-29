@@ -66,7 +66,7 @@ const PasswordChangeForm = () => {
             </div>
             <div className="-mt-1.5 text-end">
                 <span
-                    onClick={() => navigate("/forgotPassword")}
+                    onClick={() => navigate("/auth/forgotPassword")}
                     className="forgot-password"
                 >
                     Forgot password?

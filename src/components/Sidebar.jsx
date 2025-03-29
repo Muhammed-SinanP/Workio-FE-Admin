@@ -41,14 +41,14 @@ const Sidebar = () => {
 
       <div className="flex flex-col gap-1">
         {SidebarData.map((element, index) =>
-          <div key={index} className={`rounded-md ${!expandSidebar && "flex justify-center"}`}>
+          <div key={index} className={`rounded-sm ${!expandSidebar && "flex justify-center"}`}>
 
             {element.path ?
               <NavLink
                 title={!expandSidebar ? element.title : undefined}
                 to={element.path}
                 className={({ isActive }) =>
-                  `flex items-center gap-1 cursor-pointer rounded-md p-1 ${isActive ? "bg-brand-dark" : "hover:bg-brand-light"}`
+                  `flex items-center gap-1 cursor-pointer rounded-sm p-1 ${isActive ? "bg-brand-dark" : "hover:bg-brand-light"}`
                 }
               >
                 <span className="flex items-center">{element.icon}</span>
@@ -57,9 +57,9 @@ const Sidebar = () => {
 
               :
 
-              <div className={`relative ${showSubDiv === element.title || showSubDivPopUp === element.title ? "bg-brand-light" : ""}  rounded-md`}>
+              <div className={`relative ${showSubDiv === element.title || showSubDivPopUp === element.title ? "bg-brand-light" : ""}  rounded-sm`}>
 
-                <div onClick={() => handleDiv(element.title)} title={!expandSidebar ? element.title : undefined} className={`flex items-center gap-1 cursor-pointer rounded-md p-1 ${!expandSidebar && "hover:bg-brand-light"}`}>
+                <div onClick={() => handleDiv(element.title)} title={!expandSidebar ? element.title : undefined} className={`flex items-center gap-1 cursor-pointer rounded-sm p-1 ${!expandSidebar && "hover:bg-brand-light"}`}>
                   <span className="flex items-center">{element.icon}</span>
                   {expandSidebar && <p className="flex-1">{element.title}</p>}
 
@@ -89,7 +89,7 @@ const Sidebar = () => {
 
 
                 {/* Popup sub div */}
-                {!expandSidebar && showSubDivPopUp === element.title && <div className="absolute z-10 w-28 py-1 rounded-md -right-28 top-0 flex bg-brand-light shadow-md flex-col text-sm">
+                {!expandSidebar && showSubDivPopUp === element.title && <div className="absolute z-10 w-28 py-1 rounded-sm -right-28 top-0 flex bg-brand-light shadow-md flex-col text-sm">
                   {element.children.map((element, index) => (
                     <NavLink
                       end
