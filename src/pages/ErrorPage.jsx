@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import ErrorDiv from '../components/ErrorDiv'
 
 const ErrorPage = () => {

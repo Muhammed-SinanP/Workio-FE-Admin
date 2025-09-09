@@ -15,7 +15,7 @@ const ResetPasswordPage = () => {
 
     return (
         <div className="">
-            <AuthHeader/>
+            
             <div className="main-div mt-8 flex w-full items-center justify-center">
                 <div>
                     <PasswordResetForm resetToken={resetToken} />
